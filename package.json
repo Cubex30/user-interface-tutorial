@@ -1,0 +1,22 @@
+{
+  "name": "user-interface-tutorial",
+  "version": "0.0.0",
+  "description": "A Tutorial for using React, MobX, and Recoil",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mkdocs": "mkdocs build",
+    "mkdocs-serve": "mkdocs serve",
+    "mkdocs-deploy": "mkdocs gh-deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cubex30/user-interface-tutorial.git"
+  },
+  "author": "sjohnson@cubexsystem.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cubex30/user-interface-tutorial/issues"
+  },
+  "homepage": "https://Cubex30.github.com/user-interface-tutorial"
+}

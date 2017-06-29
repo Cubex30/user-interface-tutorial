@@ -1,0 +1,7 @@
+site_name: Cubex User Interface Tutorial
+site_url: https://cubex30.github.io/user-interface-tutorial
+repo_url: https://github.com/cubex30/user-interface-tutorial
+copyright: Copyright &copy; 2017 Cubex LLC
+pages:
+    - Home: index.md
+theme: readthedocs
