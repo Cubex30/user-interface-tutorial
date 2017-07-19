@@ -141,9 +141,16 @@ export default class User {
 <p>And there we have it!  Our <code>firstName</code> and <code>lastName</code> properties are now Observables!</p>
 <h2 id="handling-input">Handling Input</h2>
 <p>Now that we can watch for changes in our data, let's set up some inputs!  </p>
-<pre><code class="TypeScript">import { observer } from 'mobx-react';
+<pre><code class="TypeScript">import * as React from 'react';
+import { observer } from 'mobx-react';
 
-export default class UserView extends Component&lt;IUserViewProps&gt; {
+import User from '../../models/User';
+
+export interface IUserViewProps {
+    user: User;
+}
+
+export default class UserView extends React.Component&lt;IUserViewProps, any&gt; {
     render() {
         let {user} = this.props;
         return (
