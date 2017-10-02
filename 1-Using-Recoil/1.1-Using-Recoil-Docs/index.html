@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Routing - Cubex User Interface Tutorial</title>
+  <title>Using Recoil Docs - Cubex User Interface Tutorial</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Routing";
-    var mkdocs_page_input_path = "2-Using-Application-State\\2.5-Routing.md";
-    var mkdocs_page_url = "/2-Using-Application-State/2.5-Routing/";
+    var mkdocs_page_name = "Using Recoil Docs";
+    var mkdocs_page_input_path = "1-Using-Recoil\\1.1-Using-Recoil-Docs.md";
+    var mkdocs_page_url = "/1-Using-Recoil/1.1-Using-Recoil-Docs/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -89,11 +89,14 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../1-Using-Recoil/1.0-Installing-Recoil/">Installing Recoil</a>
+    <a class="" href="../1.0-Installing-Recoil/">Installing Recoil</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../1-Using-Recoil/1.1-Using-Recoil-Docs/">Using Recoil Docs</a>
+    <a class="current" href="./">Using Recoil Docs</a>
+    <ul class="subnav">
+            
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -104,30 +107,27 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../2.0-State-Organization/">State Organization</a>
+    <a class="" href="../../2-Using-Application-State/2.0-State-Organization/">State Organization</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../2.1-Connections/">Connections</a>
+    <a class="" href="../../2-Using-Application-State/2.1-Connections/">Connections</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../2.2-Models-and-Stores/">Models and Stores</a>
+    <a class="" href="../../2-Using-Application-State/2.2-Models-and-Stores/">Models and Stores</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../2.3-Managers/">Managers</a>
+    <a class="" href="../../2-Using-Application-State/2.3-Managers/">Managers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../2.4-Workflows/">Workflows</a>
+    <a class="" href="../../2-Using-Application-State/2.4-Workflows/">Workflows</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Routing</a>
-    <ul class="subnav">
-            
-    </ul>
+    <a class="" href="../../2-Using-Application-State/2.5-Routing/">Routing</a>
                 </li>
     </ul>
 	    </li>
@@ -154,14 +154,14 @@
     
       
         
-          <li>Using Application State &raquo;</li>
+          <li>Using Recoil &raquo;</li>
         
       
     
-    <li>Routing</li>
+    <li>Using Recoil Docs</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/2-Using-Application-State\2.5-Routing.md"
+        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/1-Using-Recoil\1.1-Using-Recoil-Docs.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -171,9 +171,17 @@
           <div role="main">
             <div class="section">
               
-                <p>Browser history is commonly accessed through two ways, the History API, and URL hashes.</p>
-<pre><code>npm install @cubex/router
+                <p>Recoil contains many components which work together dynamically.  In order to get the most out of it, consider using its documentation directly.</p>
+<p>To build Recoil's documentation, clone it from GitHub.</p>
+<pre><code>git clone https://github.com/Cubex30/recoil.git
 </code></pre>
+<p>Then install the npm dependencies</p>
+<pre><code>npm install
+</code></pre>
+<p>Then build the project</p>
+<pre><code>npm run build
+</code></pre>
+<p>Then launch the documentation in your browser.  It should be located at <code>recoil/docs/index.html</code>.</p>
               
             </div>
           </div>
@@ -181,8 +189,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../../2-Using-Application-State/2.0-State-Organization/" class="btn btn-neutral float-right" title="State Organization">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../2.4-Workflows/" class="btn btn-neutral" title="Workflows"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../1.0-Installing-Recoil/" class="btn btn-neutral" title="Installing Recoil"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -212,8 +222,10 @@
           <a href="https://github.com/cubex30/user-interface-tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../2.4-Workflows/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../1.0-Installing-Recoil/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../../2-Using-Application-State/2.0-State-Organization/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
