@@ -79,6 +79,111 @@
             "location": "/0-Overview/0.2-Updating-Data/#running-our-application",
             "text": "So, we can now display and update our  User .  Try running it and see what happens!",
             "title": "Running our Application"
+        },
+        {
+            "location": "/0-Overview/0.3-Computed-Properties/",
+            "text": "We've looked at creating \nObservable\n properties, which let us watch for changes in our \nApplication State\n.  But how do our \nComponents\n track those changes?\n\n\nIf you look at the \nUserView.render\n method, we simply read from our \nUser\n.  MobX tracked those changes for us automatically using \nComputed\n properties.  For our Components, this is done behind the scenes.  But we can use them in our Application State just as easily.\n\n\nComputed Properties\n\n\nMobX provides \nComputed\n properties for objects, which use a getter function to produce a value.  However, any \nObservable\n properties used in this function, will automatically produce subscriptions.\n\n\nFor simplicity, we can also use the \n@computed\n decorator, except in front of a getter function.\n\n\n@computed get property(): type {\n    return this.value;\n}\n\n\n\n\nFor our \nUser\n let's add a \nfullName\n \nComputed\n property.  Add this right under the \nfirstName\n and \nlastName\n properties.\n\n\n@computed get fullName() {\n    return this.firstName + ' ' + this.lastName;\n}\n\n\n\n\nThen in our \nUserView\n, let's add the line\n\n\n<p>Full name: {user.fullName}</p>\n\n\n\n\nThere are a couple things to note:\n\n\n\n\nWe simply used the values in order to subscribe to them automatically.\n\n\nWe can use as many values as we want.\n\n\nWhatever we return from this method will be the value of the property.\n\n\n\n\nAvoid Circular References\n\n\nIn order for updates to flow, we must avoid any \"circular references\" or \"cycles\".  This means that as an update is occurring, it must not reach the same node more than once.\n\n\nFor example, let's say we have two \nComputed\n properties, A and B.  And let's say A references B, and B references A.  So if A is updated, then we must update B.  Similarly if B is updated, we must update A.  In which case updating A, will update B, which will update A, which will update B, and so on.\n\n\nSo it is important that these situations be avoided.\n\n\nResponding to updates\n\n\nIt is best to avoid writing to \nObservable\n properties inside of a \nComputed\n.  In most cases, a second \nComputed\n which references the first will be enough.\n\n\nIf you must write to an \nObservable\n or do other work, it is best to wrap it inside of a \nwindow.setTimeout()\n, or use:",
+            "title": "Computed Properties"
+        },
+        {
+            "location": "/0-Overview/0.3-Computed-Properties/#computed-properties",
+            "text": "MobX provides  Computed  properties for objects, which use a getter function to produce a value.  However, any  Observable  properties used in this function, will automatically produce subscriptions.  For simplicity, we can also use the  @computed  decorator, except in front of a getter function.  @computed get property(): type {\n    return this.value;\n}  For our  User  let's add a  fullName   Computed  property.  Add this right under the  firstName  and  lastName  properties.  @computed get fullName() {\n    return this.firstName + ' ' + this.lastName;\n}  Then in our  UserView , let's add the line  <p>Full name: {user.fullName}</p>  There are a couple things to note:   We simply used the values in order to subscribe to them automatically.  We can use as many values as we want.  Whatever we return from this method will be the value of the property.",
+            "title": "Computed Properties"
+        },
+        {
+            "location": "/0-Overview/0.3-Computed-Properties/#avoid-circular-references",
+            "text": "In order for updates to flow, we must avoid any \"circular references\" or \"cycles\".  This means that as an update is occurring, it must not reach the same node more than once.  For example, let's say we have two  Computed  properties, A and B.  And let's say A references B, and B references A.  So if A is updated, then we must update B.  Similarly if B is updated, we must update A.  In which case updating A, will update B, which will update A, which will update B, and so on.  So it is important that these situations be avoided.",
+            "title": "Avoid Circular References"
+        },
+        {
+            "location": "/0-Overview/0.3-Computed-Properties/#responding-to-updates",
+            "text": "It is best to avoid writing to  Observable  properties inside of a  Computed .  In most cases, a second  Computed  which references the first will be enough.  If you must write to an  Observable  or do other work, it is best to wrap it inside of a  window.setTimeout() , or use:",
+            "title": "Responding to updates"
+        },
+        {
+            "location": "/0-Overview/0.4-Handling-Events/",
+            "text": "The DOM has built-in support for \nEvent-Driven\n programming.  This means your application can sit around and wait for user input or other \nEvents\n.  Once an \nEvent\n has occurred, its information is sent to a function called an \nEventListener\n.\n\n\nWe saw an example of this during the last section for handling \nchange\n events from \n<input>\n elements.  \n\n\nEvent Listeners\n\n\nUsing classical JavaScript \nDOM Element Attributes\n\n\n/* Code */\nfunction handleClick() {\n    ...\n}\n\n/* View */\n<button onclick=\"handleClick()\" />\n\n\n\n\nUsing JSX to inject \nEventListeners\n.\n\n\n/* Code */\nclass ViewModel {\n    handleClick() {\n        ...\n    }\n}\n\n/* View */\n<button onclick={viewModel.handleClick.bind(this)} />\n\n\n\n\nUsing TypeScript arrow methods to simplify syntax.\n\n\n/* Code */\nclass ViewModel {\n    handleClick = () => {\n        ...\n    }\n}\n\n/* View */\n<button onclick={viewModel.handleClick} />\n\n\n\n\nAsynchronous Programming\n\n\nJavaScript can be written as \nasynchronous\n code, meaning it doesn't have to always run in order.  Most of the time this isn't the case, as instructions are executed one after another.\n\n\nEvent Propagation\n\n\nEvent.stopPropagation();\nEvent.preventDefault();",
+            "title": "Handling Events"
+        },
+        {
+            "location": "/0-Overview/0.4-Handling-Events/#event-listeners",
+            "text": "Using classical JavaScript  DOM Element Attributes  /* Code */\nfunction handleClick() {\n    ...\n}\n\n/* View */\n<button onclick=\"handleClick()\" />  Using JSX to inject  EventListeners .  /* Code */\nclass ViewModel {\n    handleClick() {\n        ...\n    }\n}\n\n/* View */\n<button onclick={viewModel.handleClick.bind(this)} />  Using TypeScript arrow methods to simplify syntax.  /* Code */\nclass ViewModel {\n    handleClick = () => {\n        ...\n    }\n}\n\n/* View */\n<button onclick={viewModel.handleClick} />",
+            "title": "Event Listeners"
+        },
+        {
+            "location": "/0-Overview/0.4-Handling-Events/#asynchronous-programming",
+            "text": "JavaScript can be written as  asynchronous  code, meaning it doesn't have to always run in order.  Most of the time this isn't the case, as instructions are executed one after another.",
+            "title": "Asynchronous Programming"
+        },
+        {
+            "location": "/0-Overview/0.4-Handling-Events/#event-propagation",
+            "text": "Event.stopPropagation();\nEvent.preventDefault();",
+            "title": "Event Propagation"
+        },
+        {
+            "location": "/0-Overview/0.5-Arrays-and-Hashes/",
+            "text": "JavaScript supports two basic data structures for storing information, Arrays and Hashes.  Let's look at how we might add an Array and a Hash to a View Model.\n\n\nArrays\n\n\nTypeScript arrays can be defined and initialized in two ways, with the \nArray<T>\n type, or \nT[]\n type.  Both of these are equivalent, but one or the other may be easier to write depending on the situation.\n\n\nSo, if we were to create an Array of \nstring\n elements, it would be.\n\n\nlet list: string[] = [];\n\n\n\n\nThis code simply creates an variable called \nlist\n, defined as an \nstring[]\n and initializes it to be an empty \nArray\n.  It is important to note that we have initialized this variable, otherwise it would equal \nundefined\n.\n\n\nNow that we have created an \nArray\n, we can access its values with a regular \nAssignment Operator\n.  We can read and write values with:\n\n\nlet value = list[0];\nlist[1] = 2;\n\n\n\n\nWe can also use any of the \nArray\n methods, such as \nArray.prototype.push(value: any): void;\n\n\nlist.push(3);\n\n\n\n\nHashes\n\n\nNext, we have JavaScript Hashes, which are actually just regular Objects.\n\n\nTypeScript Hashes can be defined as an \ninterface\n, which stores elements with either \nstring\n or \nnumber\n indexes.  JavaScript allows for mixing index types, but TypeScript requies it to be one or the other.\n\n\nExternal Links\n\n\nFor more information on Arrays, visit \nArray - JavaScript | MDN\n\n\nFor more information on Objects, visit \nObjects - JavaScript | MDN\n\n\nView Models\n\n\nWe may store Arrays and Hashes as properties on a View Model.  For example:\n\n\nclass ViewModel {\n    list = [];\n    map = {};\n}\n\n\n\n\nHowever, just like regular properties, changes to these properties will be ignored.  Again, if we add our decorators, we can subscribe to changes.\n\n\nclass ViewModel {\n    @observable list = [];\n    @observable map = {};\n}\n\n\n\n\nWe can also be more specific about what is stored in Arrays and Hashes.\n\n\nclass ViewModel {\n    @observable list: string[];\n    @observable map: {\n        [index: string]: string\n    };\n}",
+            "title": "Arrays and Hashes"
+        },
+        {
+            "location": "/0-Overview/0.5-Arrays-and-Hashes/#arrays",
+            "text": "TypeScript arrays can be defined and initialized in two ways, with the  Array<T>  type, or  T[]  type.  Both of these are equivalent, but one or the other may be easier to write depending on the situation.  So, if we were to create an Array of  string  elements, it would be.  let list: string[] = [];  This code simply creates an variable called  list , defined as an  string[]  and initializes it to be an empty  Array .  It is important to note that we have initialized this variable, otherwise it would equal  undefined .  Now that we have created an  Array , we can access its values with a regular  Assignment Operator .  We can read and write values with:  let value = list[0];\nlist[1] = 2;  We can also use any of the  Array  methods, such as  Array.prototype.push(value: any): void;  list.push(3);",
+            "title": "Arrays"
+        },
+        {
+            "location": "/0-Overview/0.5-Arrays-and-Hashes/#hashes",
+            "text": "Next, we have JavaScript Hashes, which are actually just regular Objects.  TypeScript Hashes can be defined as an  interface , which stores elements with either  string  or  number  indexes.  JavaScript allows for mixing index types, but TypeScript requies it to be one or the other.",
+            "title": "Hashes"
+        },
+        {
+            "location": "/0-Overview/0.5-Arrays-and-Hashes/#external-links",
+            "text": "For more information on Arrays, visit  Array - JavaScript | MDN  For more information on Objects, visit  Objects - JavaScript | MDN",
+            "title": "External Links"
+        },
+        {
+            "location": "/0-Overview/0.5-Arrays-and-Hashes/#view-models",
+            "text": "We may store Arrays and Hashes as properties on a View Model.  For example:  class ViewModel {\n    list = [];\n    map = {};\n}  However, just like regular properties, changes to these properties will be ignored.  Again, if we add our decorators, we can subscribe to changes.  class ViewModel {\n    @observable list = [];\n    @observable map = {};\n}  We can also be more specific about what is stored in Arrays and Hashes.  class ViewModel {\n    @observable list: string[];\n    @observable map: {\n        [index: string]: string\n    };\n}",
+            "title": "View Models"
+        },
+        {
+            "location": "/1-Using-Recoil/1.0-Installing-Recoil/",
+            "text": "In order to unify our UI/UX designs, it is best to use a standard style and component library.  For our purposes, we will look at Recoil.\n\n\nIn order to install Recoil, we must configure our project to compile \n.less\n files.  LESS is a dynamic language for generating stylesheets, and it is heavily used by Recoil to define its styles.\n\n\nIn the console, run\n\n\nnpm install css-loader less less-loader style-loader\n\n\n\nThen, we must update our \nwebpack.config.js\n files.  If you're using the \nts-boilerplate\n project, be sure to update both versions of the configuration.  In the \nloaders\n array, add\n\n\n{\n    test: /\\.less$/,\n    loader: 'style-loader!css-loader!less-loader'\n}\n\n\n\n\nWe must now add Recoil.  In the console, run\n\n\nnpm install @cubex/recoil\n\n\n\nNow that we have recoil installed, we must reference the \n.less\n files.  In our \nmain.tsx\n, include the line\n\n\nimport '@cubex/recoil/less/index.less';\n\n\n\n\nThis directly references the stylesheet to be compiled by Webpack.  Furthermore, we only need to reference the stylesheet here.\n\n\nUsing Recoil in a View\n\n\nWe can now import Recoil components, which will be styled correctly.  For example, let's say we wish to use a \nButton\n in our component.  We can simply include\n\n\nimport { Button } from '@cubex/recoil';\n\n\n\n\nAnd then in the body of the component, we can use it directly\n\n\nrender() {\n    return (\n        <Button>OK</Button>\n    );\n}",
+            "title": "Installing Recoil"
+        },
+        {
+            "location": "/1-Using-Recoil/1.0-Installing-Recoil/#using-recoil-in-a-view",
+            "text": "We can now import Recoil components, which will be styled correctly.  For example, let's say we wish to use a  Button  in our component.  We can simply include  import { Button } from '@cubex/recoil';  And then in the body of the component, we can use it directly  render() {\n    return (\n        <Button>OK</Button>\n    );\n}",
+            "title": "Using Recoil in a View"
+        },
+        {
+            "location": "/2-Using-Application-State/2.0-State-Organization/",
+            "text": "",
+            "title": "State Organization"
+        },
+        {
+            "location": "/2-Using-Application-State/2.1-Connections/",
+            "text": "",
+            "title": "Connections"
+        },
+        {
+            "location": "/2-Using-Application-State/2.2-Models-and-Stores/",
+            "text": "",
+            "title": "Models and Stores"
+        },
+        {
+            "location": "/2-Using-Application-State/2.3-Managers/",
+            "text": "",
+            "title": "Managers"
+        },
+        {
+            "location": "/2-Using-Application-State/2.4-Workflows/",
+            "text": "",
+            "title": "Workflows"
+        },
+        {
+            "location": "/2-Using-Application-State/2.5-Routing/",
+            "text": "Browser history is commonly accessed through two ways, the History API, and URL hashes.\n\n\nnpm install @cubex/router",
+            "title": "Routing"
         }
     ]
 }

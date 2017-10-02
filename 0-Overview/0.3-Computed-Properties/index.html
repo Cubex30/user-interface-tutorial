@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Getting Started - Cubex User Interface Tutorial</title>
+  <title>Computed Properties - Cubex User Interface Tutorial</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Getting Started";
-    var mkdocs_page_input_path = "0-Overview\\0.0-Getting-Started.md";
-    var mkdocs_page_url = "/0-Overview/0.0-Getting-Started/";
+    var mkdocs_page_name = "Computed Properties";
+    var mkdocs_page_input_path = "0-Overview\\0.3-Computed-Properties.md";
+    var mkdocs_page_url = "/0-Overview/0.3-Computed-Properties/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -56,21 +56,9 @@
 		
     <span class="caption-text">Overview</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Getting Started</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#installing-typescript">Installing TypeScript</a></li>
-    
-
-    <li class="toctree-l3"><a href="#using-npm">Using npm</a></li>
-    
-
-    <li class="toctree-l3"><a href="#installing-react-and-mobx">Installing React and MobX</a></li>
-    
-
-    </ul>
+    <a class="" href="../0.0-Getting-Started/">Getting Started</a>
                 </li>
                 <li class="">
                     
@@ -80,9 +68,21 @@
                     
     <a class="" href="../0.2-Updating-Data/">Updating Data</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../0.3-Computed-Properties/">Computed Properties</a>
+    <a class="current" href="./">Computed Properties</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#computed-properties">Computed Properties</a></li>
+    
+
+    <li class="toctree-l3"><a href="#avoid-circular-references">Avoid Circular References</a></li>
+    
+
+    <li class="toctree-l3"><a href="#responding-to-updates">Responding to updates</a></li>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -163,10 +163,10 @@
         
       
     
-    <li>Getting Started</li>
+    <li>Computed Properties</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/0-Overview\0.0-Getting-Started.md"
+        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/0-Overview\0.3-Computed-Properties.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -176,34 +176,39 @@
           <div role="main">
             <div class="section">
               
-                <p>Setting up your development environment can be done in just a few steps.</p>
-<h2 id="installing-typescript">Installing TypeScript</h2>
-<p>For simplicity in these tutorials, you can download a boilerplate at <a href="https://github.com/sjohnsonaz/ts-boilerplate">https://github.com/sjohnsonaz/ts-boilerplate</a>.  Follow its instructions to get a TypeScript environment up and running.  Otherwise, you will need to set up Node, TypeScript, and Webpack to compile and run these projects.</p>
-<h2 id="using-npm">Using npm</h2>
-<p>For TypeScript, the simplest way to install packages is through npm.  Any project using npm must define a <code>package.json</code> file in its root directory.  The boilerplate above already has done this for you.  This file defines useful information about your project.  For simply developing a project, the most important sections are for defining its dependencies. However, if you were to publish your project to npm so others could use it, this file includes other important information which would need customizing.</p>
-<p>The <code>package.json</code> file defines several properties to store dependencies:</p>
-<ul>
-<li><code>"dependencies"</code></li>
-<li><code>"devDependencies"</code></li>
-<li><code>"peerDependencies"</code></li>
-<li><code>"bundledDependencies"</code></li>
-<li><code>"optionalDependencies"</code></li>
-</ul>
-<p>For our purposes, we will be most concerned with the first two.  By default, packages are installed as "dependencies", which means any time your project is installed, these will be installed along with it.  However, in some cases your project may need certain packages while it is being developed, but not while it is being used.  For example, we might install TypeScript on the development environment to build our project, but we certainly don't need to deploy it along with the project.  In this case, these packages should be installed as "devDependencies".</p>
-<p>For more information, refer to <a href="https://docs.npmjs.com/files/package.json">package.json | npm Documentation</a>.</p>
-<h2 id="installing-react-and-mobx">Installing React and MobX</h2>
-<p>We need to install four packages as regular dependencies.</p>
-<ul>
-<li><code>react</code></li>
-<li><code>react-dom</code></li>
-<li><code>mobx</code></li>
-<li><code>mobx-react</code></li>
-</ul>
-<p>This is done with a simple <code>npm install</code> command:</p>
-<pre><code>npm install react react-dom mobx mobx-react
+                <p>We've looked at creating <strong>Observable</strong> properties, which let us watch for changes in our <strong>Application State</strong>.  But how do our <strong>Components</strong> track those changes?</p>
+<p>If you look at the <code>UserView.render</code> method, we simply read from our <code>User</code>.  MobX tracked those changes for us automatically using <strong>Computed</strong> properties.  For our Components, this is done behind the scenes.  But we can use them in our Application State just as easily.</p>
+<h2 id="computed-properties">Computed Properties</h2>
+<p>MobX provides <strong>Computed</strong> properties for objects, which use a getter function to produce a value.  However, any <strong>Observable</strong> properties used in this function, will automatically produce subscriptions.</p>
+<p>For simplicity, we can also use the <code>@computed</code> decorator, except in front of a getter function.</p>
+<pre><code class="Typescript">@computed get property(): type {
+    return this.value;
+}
 </code></pre>
-<p>In older versions of npm, we would need to append <code>--save</code> to the end of that command.</p>
-<p>Keep in mind, any dependency to be saved to "devDependencies" should be installed with <code>--save-dev</code> appended.</p>
+
+<p>For our <code>User</code> let's add a <code>fullName</code> <strong>Computed</strong> property.  Add this right under the <code>firstName</code> and <code>lastName</code> properties.</p>
+<pre><code class="Typescript">@computed get fullName() {
+    return this.firstName + ' ' + this.lastName;
+}
+</code></pre>
+
+<p>Then in our <code>UserView</code>, let's add the line</p>
+<pre><code class="TypeScript">&lt;p&gt;Full name: {user.fullName}&lt;/p&gt;
+</code></pre>
+
+<p>There are a couple things to note:</p>
+<ol>
+<li>We simply used the values in order to subscribe to them automatically.</li>
+<li>We can use as many values as we want.</li>
+<li>Whatever we return from this method will be the value of the property.</li>
+</ol>
+<h2 id="avoid-circular-references">Avoid Circular References</h2>
+<p>In order for updates to flow, we must avoid any "circular references" or "cycles".  This means that as an update is occurring, it must not reach the same node more than once.</p>
+<p>For example, let's say we have two <strong>Computed</strong> properties, A and B.  And let's say A references B, and B references A.  So if A is updated, then we must update B.  Similarly if B is updated, we must update A.  In which case updating A, will update B, which will update A, which will update B, and so on.</p>
+<p>So it is important that these situations be avoided.</p>
+<h2 id="responding-to-updates">Responding to updates</h2>
+<p>It is best to avoid writing to <strong>Observable</strong> properties inside of a <strong>Computed</strong>.  In most cases, a second <strong>Computed</strong> which references the first will be enough.</p>
+<p>If you must write to an <strong>Observable</strong> or do other work, it is best to wrap it inside of a <code>window.setTimeout()</code>, or use:</p>
               
             </div>
           </div>
@@ -211,10 +216,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../0.1-Displaying-Data/" class="btn btn-neutral float-right" title="Displaying Data">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../0.4-Handling-Events/" class="btn btn-neutral float-right" title="Handling Events">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../0.2-Updating-Data/" class="btn btn-neutral" title="Updating Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -244,10 +249,10 @@
           <a href="https://github.com/cubex30/user-interface-tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../0.2-Updating-Data/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../0.1-Displaying-Data/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../0.4-Handling-Events/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
