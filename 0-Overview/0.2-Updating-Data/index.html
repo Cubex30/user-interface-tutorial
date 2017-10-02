@@ -150,6 +150,7 @@ export interface IUserViewProps {
     user: User;
 }
 
+@observer
 export default class UserView extends React.Component&lt;IUserViewProps, any&gt; {
     render() {
         let {user} = this.props;
@@ -192,14 +193,14 @@ updateLastName = (event) =&gt; {
 <li>We are using the <strong>Arrow Function</strong> notation, as the <code>this</code> value may be changed while executing.</li>
 </ol>
 <p>But how do we hook these handlers up to our inputs?</p>
-<pre><code class="TypeScript">&lt;p&gt;First name: &lt;input type=&quot;text&quot; value={user.firstName} oninput={this.updateFirstName} /&gt;&lt;/p&gt;
-&lt;p&gt;Last name: &lt;input type=&quot;text&quot; value={user.lastName} oninput={this.updateLastName} /&gt;&lt;/p&gt;
+<pre><code class="TypeScript">&lt;p&gt;First name: &lt;input type=&quot;text&quot; value={user.firstName} onChange={this.updateFirstName} /&gt;&lt;/p&gt;
+&lt;p&gt;Last name: &lt;input type=&quot;text&quot; value={user.lastName} onChange={this.updateLastName} /&gt;&lt;/p&gt;
 </code></pre>
 
 <p>And that's it!  Any time the user updates the text inputs, the <code>Event</code> is triggered, and the <code>User</code> is updated.</p>
 <p>We could also use regular methods instead of Arrow Functions for <code>updateFirstName</code> and <code>updateLastName</code>.  In that case, when we inject them, we must use <code>Function.bind()</code>.</p>
-<pre><code class="TypeScript">&lt;p&gt;First name: &lt;input type=&quot;text&quot; value={user.firstName} oninput={this.updateFirstName.bind(this)} /&gt;&lt;/p&gt;
-&lt;p&gt;Last name: &lt;input type=&quot;text&quot; value={user.lastName} oninput={this.updateLastName.bind(this)} /&gt;&lt;/p&gt;
+<pre><code class="TypeScript">&lt;p&gt;First name: &lt;input type=&quot;text&quot; value={user.firstName} onChange={this.updateFirstName.bind(this)} /&gt;&lt;/p&gt;
+&lt;p&gt;Last name: &lt;input type=&quot;text&quot; value={user.lastName} onChange={this.updateLastName.bind(this)} /&gt;&lt;/p&gt;
 </code></pre>
 
 <p>In many cases, this syntax is harder to read, but it is personal preference.  In some cases, where you must inject a specific value into the method, <code>Function.bind(this, value)</code> is useful.</p>
