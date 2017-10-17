@@ -11,6 +11,8 @@ pages:
         - Computed Properties: 0-Overview/0.3-Computed-Properties.md
         - Handling Events: 0-Overview/0.4-Handling-Events.md
         - Arrays and Hashes: 0-Overview/0.5-Arrays-and-Hashes.md
+        - TypeScript: 0-Overview/0.6-TypeScript.md
+        - Asynchronous Execution: 0-Overview/0.7-Asynchronous-Execution.md
     - Using Recoil:
         - Installing Recoil: 1-Using-Recoil/1.0-Installing-Recoil.md
         - Using Recoil Docs: 1-Using-Recoil/1.1-Using-Recoil-Docs.md
