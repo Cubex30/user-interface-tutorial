@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Computed Properties - Cubex User Interface Tutorial</title>
+  <title>Asynchronous Execution - Cubex User Interface Tutorial</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Computed Properties";
-    var mkdocs_page_input_path = "0-Overview\\0.3-Computed-Properties.md";
-    var mkdocs_page_url = "/0-Overview/0.3-Computed-Properties/";
+    var mkdocs_page_name = "Asynchronous Execution";
+    var mkdocs_page_input_path = "0-Overview\\0.7-Asynchronous-Execution.md";
+    var mkdocs_page_url = "/0-Overview/0.7-Asynchronous-Execution/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -68,21 +68,9 @@
                     
     <a class="" href="../0.2-Updating-Data/">Updating Data</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Computed Properties</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#computed-properties">Computed Properties</a></li>
-    
-
-    <li class="toctree-l3"><a href="#avoid-circular-references">Avoid Circular References</a></li>
-    
-
-    <li class="toctree-l3"><a href="#responding-to-updates">Responding to updates</a></li>
-    
-
-    </ul>
+    <a class="" href="../0.3-Computed-Properties/">Computed Properties</a>
                 </li>
                 <li class="">
                     
@@ -96,9 +84,21 @@
                     
     <a class="" href="../0.6-TypeScript/">TypeScript</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../0.7-Asynchronous-Execution/">Asynchronous Execution</a>
+    <a class="current" href="./">Asynchronous Execution</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#callbacks">Callbacks</a></li>
+    
+
+    <li class="toctree-l3"><a href="#promises">Promises</a></li>
+    
+
+    <li class="toctree-l3"><a href="#asyncawait">Async/Await</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -175,10 +175,10 @@
         
       
     
-    <li>Computed Properties</li>
+    <li>Asynchronous Execution</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/0-Overview\0.3-Computed-Properties.md"
+        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/0-Overview\0.7-Asynchronous-Execution.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -188,39 +188,113 @@
           <div role="main">
             <div class="section">
               
-                <p>We've looked at creating <strong>Observable</strong> properties, which let us watch for changes in our <strong>Application State</strong>.  But how do our <strong>Components</strong> track those changes?</p>
-<p>If you look at the <code>UserView.render</code> method, we simply read from our <code>User</code>.  MobX tracked those changes for us automatically using <strong>Computed</strong> properties.  For our Components, this is done behind the scenes.  But we can use them in our Application State just as easily.</p>
-<h2 id="computed-properties">Computed Properties</h2>
-<p>MobX provides <strong>Computed</strong> properties for objects, which use a getter function to produce a value.  However, any <strong>Observable</strong> properties used in this function, will automatically produce subscriptions.</p>
-<p>For simplicity, we can also use the <code>@computed</code> decorator, except in front of a getter function.</p>
-<pre><code class="Typescript">@computed get property(): type {
-    return this.value;
+                <p>JavaScript and TypeScript support various </p>
+<h2 id="callbacks">Callbacks</h2>
+<pre><code class="TypeScript">window.setTimeout(function () {
+
+}, 1000);
+</code></pre>
+
+<pre><code class="TypeScript">$.ajax('/api/user' + id, {
+    method: 'GET',
+    success: function(user: IUser) {
+
+    },
+    error: function(reason: any) {
+
+    }
+});
+</code></pre>
+
+<pre><code class="TypeScript">function getUser(id, success: (user: IUser) =&gt; void, error: (reason: any) =&gt; void)
+    $.ajax('/api/user' + id, {
+        method: 'GET',
+        success:success,
+        error: error
+    });
 }
 </code></pre>
 
-<p>For our <code>User</code> let's add a <code>fullName</code> <strong>Computed</strong> property.  Add this right under the <code>firstName</code> and <code>lastName</code> properties.</p>
-<pre><code class="Typescript">@computed get fullName() {
-    return this.firstName + ' ' + this.lastName;
+<pre><code class="TypeScript">function editUserPhone(id: string, phoneNumber: string, success: (result: boolean) =&gt; void, error: (reason: any) =&gt; void) {
+    getUser(id, function (user) {
+        if (user &amp;&amp; user.id) {
+            getPhone(user.id, function (phone) {
+                if (phone &amp;&amp; phone.id) {
+                    phone.phoneNumber = phoneNumber;
+                    updatePhone(phone.id, phone, function (result: boolean) {
+                        if (result) {
+                            success(result);
+                        } else {
+                            error('Unable to update phone');
+                        }
+                    }, function (reason: any) {
+                        error(reason);
+                    });
+                } else {
+                    error('No phone found');
+                }
+            },
+            function (reason: any) {
+                error(reason);
+            });
+        } else {
+            error('No user found');
+        }
+    }, function (reason: any) {
+        error(reason);
+    });
 }
 </code></pre>
 
-<p>Then in our <code>UserView</code>, let's add the line</p>
-<pre><code class="TypeScript">&lt;p&gt;Full name: {user.fullName}&lt;/p&gt;
+<h2 id="promises">Promises</h2>
+<p>Let's take a look at the Promise style code.  Here, each asynchronous function returns a <code>Promise</code> object, instead of taking in callback parameters.  This Promise provides access to the result of <em>exactly one</em> execution of the nested function.  Callbacks that execute many times, such as <code>window.setInterval</code>, <code>Array.prototype.forEach</code>, <code>Array.prototype.map</code>, etc., are used different from Promises.</p>
+<pre><code class="TypeScript">function editUserPhone(id: string, phoneNumber: string) {
+    return getUser(id).then(function (user) {
+        if (!user || !user.id) {
+            throw 'No user found';
+        }
+
+        return getPhone(user.id).then(function (phone) {
+            if (!phone || !phone.id) {
+                throw 'No phone found';
+            }
+
+            phone.phoneNumber = phoneNumber;
+            return updatePhone(phone.id, phone).then(function (result: boolean) {
+                if (!result) {
+                    throw 'Unable to update phone';
+                }
+
+                return result;
+            });
+        });
+    });
+}
 </code></pre>
 
-<p>There are a couple things to note:</p>
-<ol>
-<li>We simply used the values in order to subscribe to them automatically.</li>
-<li>We can use as many values as we want.</li>
-<li>Whatever we return from this method will be the value of the property.</li>
-</ol>
-<h2 id="avoid-circular-references">Avoid Circular References</h2>
-<p>In order for updates to flow, we must avoid any "circular references" or "cycles".  This means that as an update is occurring, it must not reach the same node more than once.</p>
-<p>For example, let's say we have two <strong>Computed</strong> properties, A and B.  And let's say A references B, and B references A.  So if A is updated, then we must update B.  Similarly if B is updated, we must update A.  In which case updating A, will update B, which will update A, which will update B, and so on.</p>
-<p>So it is important that these situations be avoided.</p>
-<h2 id="responding-to-updates">Responding to updates</h2>
-<p>It is best to avoid writing to <strong>Observable</strong> properties inside of a <strong>Computed</strong>.  In most cases, a second <strong>Computed</strong> which references the first will be enough.</p>
-<p>If you must write to an <strong>Observable</strong> or do other work, it is best to wrap it inside of a <code>window.setTimeout()</code>, or use:</p>
+<h2 id="asyncawait">Async/Await</h2>
+<p>Let's now take a look at the <code>async</code> and <code>await</code> symbols.  If we mark a function as <code>async</code>, it implicitly returns a <code>Promise</code> object.  This return type can be autogenerated by TypeScript, so a function that returns a <code>boolean</code> is now <code>Promise&lt;boolean&gt;</code>.</p>
+<p>Once we have marked it as <code>async</code>, we gain access to the <code>await</code> symbol.  We simply use <code>await</code> before executing any function that returns a <code>Promise</code>.  Instead of having to write <code>.then(function (result) { })</code>, the result will be turned to the left of the statement.  We can now write <code>let result = await getValue();</code>, and <code>result</code> will be populated with the data return from the asynchronous call.</p>
+<pre><code class="TypeScript">async function editUserPhone(id: string, phoneNumber: string) {
+    let user = await getUser(id);
+    if (!user || !user.id) {
+        throw 'No user found';
+    }
+
+    let phone = await getPhone(user.id);
+    if (!phone || !phone.id) {
+        throw 'No phone found';
+    }
+
+    phone.phoneNumber = phoneNumber;
+    let result = await updatePhone(phone.id, phone);
+    if (!result) {
+        throw 'Unable to update phone';
+    }
+
+    return result;
+}
+</code></pre>
               
             </div>
           </div>
@@ -228,10 +302,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../0.4-Handling-Events/" class="btn btn-neutral float-right" title="Handling Events">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../1-Using-Recoil/1.0-Installing-Recoil/" class="btn btn-neutral float-right" title="Installing Recoil">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../0.2-Updating-Data/" class="btn btn-neutral" title="Updating Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../0.6-TypeScript/" class="btn btn-neutral" title="TypeScript"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -261,10 +335,10 @@
           <a href="https://github.com/cubex30/user-interface-tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../0.2-Updating-Data/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../0.6-TypeScript/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../0.4-Handling-Events/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../1-Using-Recoil/1.0-Installing-Recoil/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
