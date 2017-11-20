@@ -215,6 +215,15 @@
 <pre><code>npm install react react-dom mobx mobx-react
 </code></pre>
 <p>In older versions of npm, we would need to append <code>--save</code> to the end of that command.</p>
+<p>Next, we need to install several packages as "devDependencies".</p>
+<ul>
+<li><code>@types/react</code></li>
+<li><code>@types/react-dom</code></li>
+</ul>
+<p>This provides the TypeScript typings to <code>react</code> and <code>react-dom</code>, which are only pure JavaScript packages.  Many pure JavaScript packages have related typings available, simply look for packages prefixed with <code>@types</code>.  However, these typings may be maintained separately from the orignal project, so some caution is advised.</p>
+<p>In order to save these as "devDependencies", run:</p>
+<pre><code>npm install @types/react @types/react-dom --save-dev
+</code></pre>
 <p>Keep in mind, any dependency to be saved to "devDependencies" should be installed with <code>--save-dev</code> appended.</p>
               
             </div>
