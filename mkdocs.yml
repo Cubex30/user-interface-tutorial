@@ -16,11 +16,13 @@ pages:
     - Using Recoil:
         - Installing Recoil: 1-Using-Recoil/1.0-Installing-Recoil.md
         - Using Recoil Docs: 1-Using-Recoil/1.1-Using-Recoil-Docs.md
+        - Simple Recoil Projects: 1-Using-Recoil/1.2-Simple-Recoil-Projects.md
     - Using Application State:
-        - State Organization: 2-Using-Application-State/2.0-State-Organization.md
-        - Connections: 2-Using-Application-State/2.1-Connections.md
-        - Models and Stores: 2-Using-Application-State/2.2-Models-and-Stores.md
-        - Managers: 2-Using-Application-State/2.3-Managers.md
-        - Workflows: 2-Using-Application-State/2.4-Workflows.md
-        - Routing: 2-Using-Application-State/2.5-Routing.md
+        - Example Back End: 2-Using-Application-State/2.0-Example-Back-End.md
+        - State Organization: 2-Using-Application-State/2.1-State-Organization.md
+        - Connections: 2-Using-Application-State/2.2-Connections.md
+        - Models and Stores: 2-Using-Application-State/2.3-Models-and-Stores.md
+        - Managers: 2-Using-Application-State/2.4-Managers.md
+        - Workflows: 2-Using-Application-State/2.5-Workflows.md
+        - Routing: 2-Using-Application-State/2.6-Routing.md
 theme: readthedocs
