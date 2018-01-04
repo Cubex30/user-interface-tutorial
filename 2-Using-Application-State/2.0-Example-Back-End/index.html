@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Example Back End - Cubex User Interface Tutorial</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Example Back End";
+    var mkdocs_page_input_path = "2-Using-Application-State\\2.0-Example-Back-End.md";
+    var mkdocs_page_url = "/2-Using-Application-State/2.0-Example-Back-End/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Cubex User Interface Tutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Overview</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.0-Getting-Started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.1-Displaying-Data/">Displaying Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.2-Updating-Data/">Updating Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.3-Computed-Properties/">Computed Properties</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.4-Handling-Events/">Handling Events</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.5-Arrays-and-Hashes/">Arrays and Hashes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.6-TypeScript/">TypeScript</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.7-Asynchronous-Execution/">Asynchronous Execution</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using Recoil</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../1-Using-Recoil/1.0-Installing-Recoil/">Installing Recoil</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../1-Using-Recoil/1.1-Using-Recoil-Docs/">Using Recoil Docs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../1-Using-Recoil/1.2-Simple-Recoil-Projects/">Simple Recoil Projects</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using Application State</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Example Back End</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#preparing-our-project">Preparing our Project</a></li>
+    
+
+    <li class="toctree-l3"><a href="#creating-a-sierra-server">Creating a Sierra Server</a></li>
+    
+
+    <li class="toctree-l3"><a href="#middleware">Middleware</a></li>
+    
+
+    <li class="toctree-l3"><a href="#routing">Routing</a></li>
+    
+
+    <li class="toctree-l3"><a href="#gateway">Gateway</a></li>
+    
+
+    <li class="toctree-l3"><a href="#service">Service</a></li>
+    
+
+    <li class="toctree-l3"><a href="#testing">Testing</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2.1-State-Organization/">State Organization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2.2-Connections/">Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2.3-Models-and-Stores/">Models and Stores</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2.4-Managers/">Managers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2.5-Workflows/">Workflows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2.6-Routing/">Routing</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Cubex User Interface Tutorial</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Using Application State &raquo;</li>
+        
+      
+    
+    <li>Example Back End</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/2-Using-Application-State\2.0-Example-Back-End.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>In order to develop our Single Page Application, we need to create a back-end service.  For consistency, we're going to use a Node.js server with <code>sierra</code>, an MVC framework.</p>
+<p>Let's create a new project for our service.</p>
+<p>First, we need to ensure Yeoman is installed</p>
+<pre><code>npm install -g yo
+</code></pre>
+<p>Then we need to install our Yeoman generator for TypeScript</p>
+<pre><code>npm install -g generator-typescript-project
+</code></pre>
+<p>Now we are ready to create our new project.  In our projects folder, we will create a directory <code>example-service</code>.</p>
+<pre><code>mkdir example-service
+</code></pre>
+<p>Enter the new directory</p>
+<pre><code>cd example-service
+</code></pre>
+<p>Now let's run our generator, and answer any prompts.</p>
+<pre><code>yo typescript-project
+</code></pre>
+<h2 id="preparing-our-project">Preparing our Project</h2>
+<p>Let's install our dependencies.  First, we need to install <code>sierra</code>.</p>
+<pre><code>npm install sierra
+</code></pre>
+<p>Open <code>src/tests/test.ts</code> and remove any content.</p>
+<p>Open <code>tsconfig.json</code> and change <code>compilerOptions.target</code> to <code>es2017</code>.</p>
+<h2 id="creating-a-sierra-server">Creating a Sierra Server</h2>
+<p>Then open <code>src/scripts/main.ts</code>.  Remove any content, add the following lines.</p>
+<pre><code class="TypeScript">import Sierra from 'sierra';
+
+let sierra = new Sierra();
+
+sierra.init();
+sierra.listen(8001);
+</code></pre>
+
+<p>Note that we have imported <code>sierra</code>.  Then we created a Sierra instance, initialized it, and started listening on port 8001.</p>
+<p>Let's go ahead and run the following in the command prompt.</p>
+<pre><code>tsc
+npm run node
+</code></pre>
+<p>Open your browser, and navigate to <code>http://localhost:8001</code>.  You should see the message <code>"no route found"</code>.</p>
+<p>This means that Sierra is running correctly, but we haven't yet configured it to do anything.</p>
+<h2 id="middleware">Middleware</h2>
+<p>Sierra works by running a series of "Middleware", which are simply a set of functions which are run in order, every time a Request is received by the server.  Middleware handle common tasks like retrieving Session information, parsing Post Body data, checking Authentication, etc.  Each Middleware returns a <code>Promise</code>, which allows them to pause execution in case of Database calls and the like.  If any unhandled exceptions occur, they are handled by the Error Middleware.  Once all of the Middleware have run, execution is sent to the "Router" which parses the URL, and runs a specified function.</p>
+<p>Let's take a look at how this all works.</p>
+<p>In your <code>src/scripts/main.ts</code>, update the import line to:</p>
+<pre><code class="TypeScript">import Sierra, { BodyMiddleware } from 'sierra';
+</code></pre>
+
+<p>This brings in the <code>BodyMiddleware</code>.  Now let's add it to our Middleware stack.</p>
+<p>After <code>let sierra = new Sierra();</code> add the line</p>
+<pre><code class="TypeScript">sierra.use(BodyMiddleware.handle);
+</code></pre>
+
+<p>This will cause our <code>BodyMiddleware</code> to check for any Post Body data, and assemble it for use.</p>
+<h2 id="routing">Routing</h2>
+<p>If you build and run our server again, you'll see it still doesn't do anything.  We need to set up routes.</p>
+<p>Create a file <code>src/scripts/controllers/HomeController.ts</code>.</p>
+<p>Inside the file, add the lines:</p>
+<pre><code class="TypeScript">import { Controller, method } from 'sierra';
+
+export default class HomeController extends Controller {
+
+    constructor() {
+        super('/');
+    }
+
+    @method('get')
+    async index() {
+        return 'Home/index';
+    }
+}
+</code></pre>
+
+<p>Note that we extend <code>Controller</code>, which provides a basic container for routes.  In the constructor, we set the base of our route to <code>'/'</code>, which means it will be our default Controller.  We'll take a look at auto-generated route names later.</p>
+<p>Then we created a "Controller method" called <code>index</code> by adding the <code>@method</code> decorator and passing <code>'get'</code>.  This means our route will only respond to the <code>GET</code> HTTP method.</p>
+<p>We also named the method <code>index</code> which is a reserved method name.  It means this is the default method, and since we are already using the default controller, it means this method will run if we run the default URL.  Hence, we have just created a method for <code>http://localhost:8001</code>.</p>
+<p>Now, let's add our controller to Sierra.</p>
+<p>Open <code>src/scripts/main.ts</code> and import our <code>HomeController</code>:</p>
+<pre><code class="TypeScript">import HomeController from './controllers/HomeController';
+</code></pre>
+
+<p>Now, before the init call, add <code>HomeController</code> to sierra:</p>
+<pre><code class="TypeScript">sierra.addController(new HomeController());
+</code></pre>
+
+<p>Build and run our server, and again navigate to <code>http://localhost:8001</code>.  You should see the message <code>"Home/index"</code>.</p>
+<h2 id="gateway">Gateway</h2>
+<p>Before we can build a full RESTful API, we need some data to serve.  For simplicity, we're going to use a local, JavaScript only database.  For a production server, this database would likely be insufficient, but it will work great for our purposes.</p>
+<p>Go to the command prompt, and install <code>nedb</code>.</p>
+<pre><code>npm install nedb
+</code></pre>
+<p>Create the file <code>src/scripts/Gateway.ts</code> and paste the following lines:</p>
+<pre><code class="TypeScript">import * as Nedb from 'nedb';
+
+export interface IModifier {
+    $set: any;
+    $unset: any;
+    $inc: any;
+    $min: any;
+    $max: any;
+    $push: any;
+    $pop: any;
+    $addToSet: any;
+    $pull: any;
+    $each: any;
+    $slice: any;
+}
+
+export interface IQuery&lt;T&gt; {
+    $lt: T;
+    $lte: T;
+    $gt: T;
+    $gte: T;
+    $in: T;
+    $nin: T;
+    $ne: T;
+    $exists: T;
+    $regex: RegExp;
+}
+
+export interface IDoc {
+    _id: string;
+}
+
+export default class Gateway&lt;T&gt; {
+    db: Nedb;
+
+    constructor(file?: string) {
+        this.db = new Nedb({
+            filename: file,
+            autoload: true
+        });
+    }
+
+    create(doc: T): Promise&lt;T &amp; IDoc&gt; {
+        return new Promise((resolve, reject) =&gt; {
+            this.db.insert(doc, function (err, newDoc) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(newDoc as any);
+                }
+            });
+        });
+    }
+
+    get(_id: string): Promise&lt;T &amp; IDoc&gt; {
+        return new Promise((resolve, reject) =&gt; {
+            this.db.findOne({ _id: _id }, function (err, doc) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc as any);
+                }
+            });
+        });
+    }
+
+    update(_id: string, doc: T | IModifier): Promise&lt;T &amp; IDoc&gt; {
+        return new Promise((resolve, reject) =&gt; {
+            this.db.update({ _id: _id }, doc, {}, function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs[0]);
+                }
+            });
+        });
+    }
+
+    find(query: Partial&lt;T&gt; | keyof T): Promise&lt;(T &amp; IDoc)[]&gt; {
+        return new Promise((resolve, reject) =&gt; {
+            this.db.find(query, function (err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
+        })
+    };
+
+    delete(_id: string): Promise&lt;number&gt; {
+        return new Promise((resolve, reject) =&gt; {
+            this.db.remove({ _id: _id }, {}, function (err, numRemoved) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(numRemoved);
+                }
+            });
+        });
+    }
+}
+</code></pre>
+
+<p>This will create a Gateway for accessing our database.</p>
+<p>Now create a folder <code>data</code> in the root of your project.  This will be used for storing our database.  If you need to reset any of the data, simply delete the files in this directory.  Also, if you decide to store your project in source control, do not commit this directory.</p>
+<h2 id="service">Service</h2>
+<p>Now that we have a database, let's create our service to access the data.</p>
+<p>We are going to create a list of Products that a user can manage.  They will have a <code>name</code> and a <code>description</code>.</p>
+<p>Create a file <code>src/scripts/data/IProduct.ts</code>, and paste the following lines:</p>
+<pre><code class="TypeScript">export interface IProduct {
+    name: string;
+    description: string;
+}
+</code></pre>
+
+<p>This interface will define the fields of our Product.</p>
+<p>Now create a file <code>src/scripts/controllers/ProductController.ts</code>, and paste the following lines:</p>
+<pre><code class="TypeScript">import { Controller, method } from 'sierra';
+
+import Gateway from './Gateway';
+
+import { IProduct } from '../data/IProduct';
+
+export default class ProductController extends Controller {
+    productGateway: Gateway&lt;IProduct&gt; = new Gateway&lt;Test&gt;('data/products.db');
+}
+</code></pre>
+
+<p>Note that we have created a Controller called <code>ProductController</code>.  We also imported both <code>IProduct</code> and <code>Gateway</code> to create a gateway property.  Our Gateway instance points at a file <code>data/products.db</code> which will store our data.</p>
+<p>Also note that we didn't specify a base route.  Sierra will then generate a route automatically based on the Controller's name.  In this case, the base will be set to <code>product</code>.</p>
+<p>Now let's create our Controller methods.  We are creating a RESTful API, which in general conform to certain standards.  We want to support five operations: List, which will give us all records, and our "CRUD" operations:  Create, Read, Update, Delete.</p>
+<ol>
+<li><strong>List</strong> - Uses the <code>GET</code> HTTP method, and is the default route <code>/product</code>.</li>
+<li><strong>Create</strong> - Uses the <code>POST</code> HTTP method, and is the default route <code>/product</code>.</li>
+<li><strong>Read</strong> - Uses the <code>GET</code> HTTP method, and is the route with an <code>id</code> parameter, <code>/product/:id</code>.</li>
+<li><strong>Update</strong> - Uses the <code>PUT</code> HTTP method, and is the route with an <code>id</code> parameter, <code>/product/:id</code>.</li>
+<li><strong>Delete</strong> - Uses the <code>DELETE</code> HTTP method, and is the route with an <code>id</code> parameter, <code>/product/:id</code>.</li>
+</ol>
+<p>Let's create the <strong>List</strong> method.  Inside the class, add the following lines:</p>
+<pre><code class="TypeScript">@method('get')
+async index() {
+    return await this.gateway.find({});
+}
+</code></pre>
+
+<p>Here we have created another <code>index</code> method, but in this case we are returning the results of <code>this.gateway.find({})</code>, which will return all rows of our products.</p>
+<p>Now let's create the <strong>Create</strong> method.  Inside the class, add the following lines:</p>
+<pre><code class="TypeScript">@method('post')
+async post($body: IProduct) {
+    return this.gateway.create($body);
+}
+</code></pre>
+
+<p>Here we again used another reserved method name, <code>post</code>.  If we use a reserved method name that matches the HTTP method, we will use the default route.  Then we used a "special parameter" <code>$body</code>, which is provided by Sierra to represent the Post Body data.  We then store the <code>$body</code> with <code>this.gateway.create($body)</code>.</p>
+<p>For our next three methods, we are going to use "query parameters".  These are named portions of the URL pathname which are parsed and passed as parameters.</p>
+<pre><code class="TypeScript">@method('get', '/:id')
+async get(id: string) {
+    return await this.gateway.get(id);
+}
+</code></pre>
+
+<p>Here we defined our route as <code>/:id</code>, which is appended onto the <code>product</code> base route.  It is then automatically passed as the <code>id</code> parameter.  These parameters are all type <code>string</code>.  We then pass the <code>id</code> to <code>this.gateway.get(id)</code>.</p>
+<p>For our remaining methods, we use similar ideas.</p>
+<pre><code class="TypeScript">@method('put', '/:id')
+async put(id: string, $body: IProduct) {
+    return this.gateway.update(id, $body);
+}
+
+@method('delete', '/:id')
+async delete(id: string) {
+    return this.gateway.delete(id);
+}
+</code></pre>
+
+<h2 id="testing">Testing</h2>
+<p>In order to test our service, we will need a better tool than a browser.  Download <strong>Postman</strong> from <a href="https://www.getpostman.com/">https://www.getpostman.com/</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../2.1-State-Organization/" class="btn btn-neutral float-right" title="State Organization">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../1-Using-Recoil/1.2-Simple-Recoil-Projects/" class="btn btn-neutral" title="Simple Recoil Projects"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2017 Cubex LLC</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/cubex30/user-interface-tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../1-Using-Recoil/1.2-Simple-Recoil-Projects/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../2.1-State-Organization/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
