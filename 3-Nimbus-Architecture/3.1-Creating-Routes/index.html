@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Creating Routes - Cubex User Interface Tutorial</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Creating Routes";
+    var mkdocs_page_input_path = "3-Nimbus-Architecture\\3.1-Creating-Routes.md";
+    var mkdocs_page_url = "/3-Nimbus-Architecture/3.1-Creating-Routes/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Cubex User Interface Tutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Overview</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.0-Getting-Started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.1-Displaying-Data/">Displaying Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.2-Updating-Data/">Updating Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.3-Computed-Properties/">Computed Properties</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.4-Handling-Events/">Handling Events</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.5-Arrays-and-Hashes/">Arrays and Hashes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.6-TypeScript/">TypeScript</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../0-Overview/0.7-Asynchronous-Execution/">Asynchronous Execution</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using Recoil</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../1-Using-Recoil/1.0-Installing-Recoil/">Installing Recoil</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../1-Using-Recoil/1.1-Using-Recoil-Docs/">Using Recoil Docs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../1-Using-Recoil/1.2-Simple-Recoil-Projects/">Simple Recoil Projects</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using Application State</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.0-Example-Back-End/">Example Back End</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.1-State-Organization/">State Organization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.2-Connections/">Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.3-Models-and-Stores/">Models and Stores</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.4-Managers/">Managers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.5-Workflows/">Workflows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../2-Using-Application-State/2.6-Routing/">Routing</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Nimbus Architecture</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Creating Routes</a>
+    <ul class="subnav">
+            
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Cubex User Interface Tutorial</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Nimbus Architecture &raquo;</li>
+        
+      
+    
+    <li>Creating Routes</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/cubex30/user-interface-tutorial/edit/master/docs/3-Nimbus-Architecture\3.1-Creating-Routes.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>In Nimbus, the <code>Route</code> is the link between Application State, the View, and Browser History.</p>
+<p>As we saw in Routing, under non-routed circumstances, a user will perform some navigation by clicking, we detect the click Event, and then modify Application State.  However, we are inserting a routing layer into that process.  So when the user clicks, we change the URL hash, which in turn creates a Hash Change Event.  We then cue off of the Hash Change Event, and modify Application State.  This then creates a History entry, in which case the user can use the browser's back and forward buttons, the same Hash Change Event is generated again.  Thus, the user can use History move throughout the application.</p>
+<blockquote>
+<p><strong>Note:</strong>  Much of this is project specific.  It has not yet been moved into libraries for general use.</p>
+</blockquote>
+<p>First off, we are going to create a <code>ExampleRoute.tsx</code> file in the <code>application/main/routes</code> folder.</p>
+<p>Import <code>React</code> and <code>Router</code>.  We should also import <code>Button</code> from Recoil.  This will be changed later.</p>
+<pre><code class="TypeScript">import * as React from 'react';
+import Router from '@cubex/router';
+import { Button } from '@cubex/recoil';
+</code></pre>
+
+<p>Next, we need to load in our project specific implementations.</p>
+<pre><code class="TypeScript">import { Route } from '../../../base/implementations/Route';
+import MenuItem from '../../../base/components/MenuItem';
+
+import Navigation from '../../../implementations/states/Navigation';
+
+import Example from '../../../views/Example/Example';
+
+import AppState from '../AppState';
+</code></pre>
+
+<p>We should now create our <code>ExampleRoute</code> class.  It should extend from <code>Route</code> and contain the following empty methods.</p>
+<p>Our <code>Router.init(router: Router)</code> method sets up the <code>Router</code> itself.  We can modify the <code>Router</code> object directly and return it.</p>
+<p>The other methods are related to the Views.</p>
+<ul>
+<li><code>Route.title()</code> returns a <code>string</code> to be displayed as the Title.</li>
+<li><code>Route.body()</code> returns a <code>JSX.Element</code> to be displayed as the Body.</li>
+<li><code>Route.header()</code> returns a <code>JSX.Element</code> to be displayed as the Header.</li>
+<li><code>Route.breadcrumb()</code> returns a <code>JSX.Element</code> to be displayed as the Breadcrumb.</li>
+<li><code>Route.menu(active: boolean)</code> returns a <code>JSX.Element</code> to be displayed as the Menu.</li>
+</ul>
+<pre><code class="TypeScript">export default class ExampleRoute extends Route {
+    state: AppState;
+
+    constructor(appState: AppState) {
+        super();
+        this.state = appState
+    }
+
+    init(router: Router): Router {
+    }
+
+    title(): string {
+    }
+
+    body(): JSX.Element {
+    }
+
+    header(): JSX.Element {
+    }
+
+    breadcrumb(): JSX.Element {
+    }
+
+    menu(active: boolean): JSX.Element {
+    }
+}
+</code></pre>
+
+<p>We will need to fill in each of the empty methods.</p>
+<p>First we should implement the <code>Router.init(router: Router)</code> method.  Here we will use the <code>Router.addFunctionGroup()</code> method, passing in our hash key, of <code>"example"</code>.  This means any time we navigate to <code>#example</code>, we will execute this route.</p>
+<p>Our first argument is an array with two methods.  Notice that the first takes a <code>string</code> parameter, and the second takes no parameter.  This means that when our hash is <code>#example</code> we will use the second, and when it is <code>#example/[string]</code> we will use the first.</p>
+<p>For our function that uses a parameter, this must always be a <code>string</code>.  We can then cast it to a number with <code>parseInt()</code>.  For our purposes, let's pass it into some state called <code>ExampleState</code>.</p>
+<p>For our other function, we will initialize <code>ExampleState</code> without a parameter.</p>
+<p>Our last argument is a single function.  This will be called when the user exits the route entirely.  So we call our <code>clear</code> method.</p>
+<pre><code class="TypeScript">    init(router: Router): Router {
+        return router.addFunctionGroup('example', [
+            (productId: string) =&gt; {
+                this.state.states.exampleState.initFromHistory(router.changedRouteGroup, false, parseInt(productId));
+            },
+            () =&gt; {
+                this.state.states.exampleState.init();
+            }
+        ], () =&gt; {
+            this.state.states.exampleState.clear();
+        });
+    }
+</code></pre>
+
+<p>For <code>Route.title()</code> we will return <code>"Example"</code>.</p>
+<pre><code class="TypeScript">    title(): string {
+        return 'Example';
+    }
+</code></pre>
+
+<p>For <code>Route.body()</code> we will return some Component to be displayed in the Body.  For our purposes, let's say we have some Component called <code>Example</code>.</p>
+<pre><code class="TypeScript">    body() {
+        let { exampleState } = this.state.states;
+        return (
+            &lt;Example key=&quot;example&quot; exampleState={exampleState} /&gt;
+        );
+    }
+</code></pre>
+
+<p>For <code>Route.header()</code> we will return a bit of formatted JSX.</p>
+<pre><code class="TypeScript">    header(): JSX.Element {
+        return (
+            &lt;h1 key=&quot;example&quot; className=&quot;dinblock&quot;&gt;Example&lt;/h1&gt;
+        );
+    }
+</code></pre>
+
+<p>For <code>Route.breadcrumb()</code> we will return some formatted JSX.  Notice that our buttons have an <code>onClick</code> Event handler.  We pass in a method <code>Exampleroute.gotoExampleIndex</code> which we will define later.  We also mark the first button as <code>checked</code> if we are viewing an item.</p>
+<pre><code class="TypeScript">    breadcrumb(): JSX.Element {
+        let { exampleState } = this.state.states;
+        let exampleItemView = !!exampleState.productManager.item;
+
+        return (
+            &lt;span key=&quot;example&quot;&gt;
+                &lt;Button simple advanced tabIndex={-1} onClick={this.gotoExampleIndex.bind(this, 0)} pointer=&quot;right&quot; checked={!exampleItemView} size=&quot;small&quot;&gt;Example&lt;/Button&gt;
+                {exampleItemView ? &lt;Button simple advanced tabIndex={-1} pointer=&quot;right&quot; checked size=&quot;small&quot;&gt;Example Item&lt;/Button&gt; : null}
+            &lt;/span&gt;
+        );
+    }
+</code></pre>
+
+<p>For our <code>Route.menu()</code> we will return a <code>MenuItem</code> Component.  This has been specifically designed to work with the dashboard menu.  Notice that the <code>location</code> property matches our URL hash.</p>
+<pre><code class="TypeScript">    menu(active: boolean): JSX.Element {
+        let { example } = PermissionState;
+        let { isMobile } = MobileState;
+
+        return (
+            &lt;MenuItem
+                label=&quot;Example&quot;
+                location=&quot;example&quot;
+                icon=&quot;archive&quot;
+                checked={active}
+                hide={!example}
+                simple={!isMobile}
+                theme={isMobile ? 'error' : undefined}
+            /&gt;
+        );
+    }
+</code></pre>
+
+<p>We now must define <code>ExampleRoute.gotoExampleIndex(n: number)</code>.  When our parameter is 0, we will use <code>Navigation.goToRoute('example');</code>.  This will cause the URL hash to change to <code>#example</code>, and run the Route.</p>
+<pre><code class="TypeScript">    gotoExampleIndex(n: number) {
+        if (n === 0) {
+            Navigation.goToRoute('example');
+        }
+    }
+}
+</code></pre>
+
+<p>Our <code>ExampleRoute</code> file should be done.  But we still need to add it to our application.  Open up <code>applications/main/MainRouter</code>.</p>
+<p>First, let's import our <code>ExampleRoute</code>.</p>
+<pre><code class="TypeScript">import QBudRoute from './routes/QBudRoute';
+</code></pre>
+
+<p>Next, we need to add <code>ExampleRoute</code> to the <code>MainRouter</code>.  Inside <code>MainRouter.init</code> add the line:</p>
+<pre><code class="TypeScript">        this.addRoute('example', new ExampleRoute(appState));
+</code></pre>
+
+<p>Note that again our <code>example</code> matches the URL hash.</p>
+<p>That should be it!  Try going to the dashboard and using the Menu to navigate to our ExampleRoute!</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../2-Using-Application-State/2.6-Routing/" class="btn btn-neutral" title="Routing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2018 Cubex LLC</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/cubex30/user-interface-tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../2-Using-Application-State/2.6-Routing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
