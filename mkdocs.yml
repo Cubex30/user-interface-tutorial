@@ -1,7 +1,7 @@
 site_name: Cubex User Interface Tutorial
 site_url: https://cubex30.github.io/user-interface-tutorial
 repo_url: https://github.com/cubex30/user-interface-tutorial
-copyright: Copyright &copy; 2017 Cubex LLC
+copyright: Copyright &copy; 2018 Cubex LLC
 pages:
     - Home: index.md
     - Overview:
@@ -25,4 +25,6 @@ pages:
         - Managers: 2-Using-Application-State/2.4-Managers.md
         - Workflows: 2-Using-Application-State/2.5-Workflows.md
         - Routing: 2-Using-Application-State/2.6-Routing.md
+    - Nimbus Architecture:
+        - Creating Routes: 3-Nimbus-Architecture/3.1-Creating-Routes.md
 theme: readthedocs
