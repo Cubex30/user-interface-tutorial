@@ -312,7 +312,7 @@
         },
         {
             "location": "/2-Using-Application-State/2.6-Routing/",
-            "text": "Browser history is commonly accessed through two ways, the History API, and URL hashes.\n\n\nnpm install @cubex/router",
+            "text": "Browser history is commonly accessed through two ways, the History API, and URL hashes.\n\n\nFor our purposes, we're going to use URL hashes.  Let's take a look at the \n@cubex/router\n package.\n\n\nFirst install it from NPM.\n\n\nnpm install @cubex/router",
             "title": "Routing"
         }
     ]
